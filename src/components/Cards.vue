@@ -1,75 +1,102 @@
       <template>
-  <div>
-    <v-col cols="12" lg="12" xl="8">
-      <div>
-        <div>
-          <div>
-            <h2 class="text-h4 font-weight-bold">ANIMAL</h2>
+  <div id="app">
+    <v-app id="inspire">
+      <v-row>
+        <v-col
+          cols="12"
+          xl="4"
+          lg="4"
+          md="6"
+          sm="8"
+          xs="12"
+          v-for="i in 5"
+          :key="i"
+        >
+          <v-card :loading="loading" class="mx-auto my-12" max-width="374">
+            <template slot="progress">
+              <v-progress-linear
+                color="deep-purple"
+                height="10"
+                indeterminate
+              ></v-progress-linear>
+            </template>
 
-            <h4 class="text-h6">Some category description goes here</h4>
-          </div>
+            <v-img
+              height="250"
+              src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+            ></v-img>
 
-          <v-divider class="my-4"></v-divider>
+            <v-card-title>Cafe Badilico</v-card-title>
 
-          <v-row>
-            <v-col cols="12" md="6" lg="4" v-for="i in 5" :key="i">
-              <v-hover
-                v-slot:default="{ hover }"
-                open-delay="50"
-                close-delay="50"
+            <v-card-text>
+              <v-row align="center" class="mx-0">
+                <v-rating
+                  :value="4.5"
+                  color="amber"
+                  dense
+                  half-increments
+                  readonly
+                  size="14"
+                ></v-rating>
+
+                <div class="grey--text ms-4">4.5 (413)</div>
+              </v-row>
+
+              <div class="my-4 text-subtitle-1">$ • Italian, Cafe</div>
+
+              <div>
+                Small plates, salads & sandwiches - an intimate setting with 12
+                indoor seats plus patio seating.
+              </div>
+            </v-card-text>
+
+            <v-divider class="mx-4"></v-divider>
+
+            <v-card-title>Tonight's availability</v-card-title>
+
+            <v-card-text>
+              <v-chip-group
+                v-model="selection"
+                active-class="deep-purple accent-4 white--text"
+                column
               >
-                <div>
-                  <v-card
-                    flat
-                    :color="hover ? 'white' : 'transparent'"
-                    :elevation="hover ? 12 : 0"
-                    hover
-                    to="/detail"
-                  >
-                    <v-img
-                      src="https://cdn.pixabay.com/photo/2016/11/14/04/45/elephant-1822636_1280.jpg"
-                      :aspect-ratio="16 / 9"
-                      gradient="to top, rgba(25,32,72,.4), rgba(25,32,72,.0)"
-                      height="200px"
-                      class="elevation-2"
-                      style="border-radius: 16px"
-                    >
-                      <v-card-text>
-                        <v-btn color="accent">ANIMAL</v-btn>
-                      </v-card-text>
-                    </v-img>
+                <v-chip>5:30PM</v-chip>
 
-                    <v-card-text>
-                      <div class="text-h5 font-weight-bold primary--text">
-                        How to write an awesome blog post in 5 steps
-                      </div>
+                <v-chip>7:30PM</v-chip>
 
-                      <div class="text-body-1 py-4">
-                        Ultrices sagittis orci a scelerisque. Massa placerat
-                        duis ultricies lacus sed turpis
-                      </div>
+                <v-chip>8:00PM</v-chip>
 
-                      <div class="d-flex align-center">
-                        <v-avatar color="accent" size="36">
-                          <v-icon dark>mdi-feather</v-icon>
-                        </v-avatar>
+                <v-chip>9:00PM</v-chip>
+              </v-chip-group>
+            </v-card-text>
 
-                        <div class="pl-2">Yan Lee · 22 July 2019</div>
-                      </div>
-                    </v-card-text>
-                  </v-card>
-                </div>
-              </v-hover>
-            </v-col>
-          </v-row>
-        </div>
-      </div>
-    </v-col>
+            <v-card-actions>
+              <v-btn color="deep-purple lighten-2" text @click="reserve">
+                Reserve
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-app>
   </div>
 </template>
   <script>
 export default {
   name: "Cards",
+  data() {
+    return {
+      loading: false,
+      selection: 1,
+    };
+  },
+  methods: {
+    reserve() {
+      this.loading = true;
+
+      setTimeout(() => (this.loading = false), 2000);
+    },
+  },
 };
 </script>
   
