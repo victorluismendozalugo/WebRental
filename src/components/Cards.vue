@@ -6,13 +6,18 @@
           cols="12"
           xl="2"
           lg="4"
-          md="8"
-          sm="8"
+          md="6"
+          sm="9"
           xs="12"
           v-for="(prod, x) in arr"
           :key="x"
         >
-          <v-card :loading="load" class="mx-auto my-12" max-width="374" @click.stop="eventoclick(prod)">
+          <v-card
+            :loading="load"
+            class="mx-auto my-12"
+            max-width="374"
+            @click.stop="seleccionaRegistro(prod)"
+          >
             <template slot="progress">
               <v-progress-linear
                 color="deep-purple"
@@ -23,33 +28,32 @@
 
             <v-img height="250" :src="prod.prodImagen1"></v-img>
 
-            <v-card-title>{{
-              prod.productoDescCorta.substring(0, 20)
-            }}</v-card-title>
+            <p class="subtitle-1 text-center">
+              {{ prod.productoDescCorta.substring(0, 20) }}
+            </p>
 
             <v-card-text>
-              <v-row align="center" class="mx-0">
-                <v-col>
-                  <div class="grey--text ms-4">COD: {{ prod.productoCod }}</div>
-                </v-col>
-                <v-col>
-                  <div class="grey--text ms-4">Precio Renta</div>
-                  <div class="my-4 text-subtitle-1">
-                    ${{ prod.prodPrecioRenta }}
-                  </div>
-                </v-col>
-              </v-row>
-
-              <div>
-                {{ prod.productoDescLarga }} Color: {{ prod.colorNombre }}
-              </div>
+              <p class="text-sm-left">COD: {{ prod.productoCod }}</p>
             </v-card-text>
+
+            <v-card-text>
+              <p class="text-sm-left font-weight-medium">
+                Precio renta: ${{ prod.prodPrecioRenta }}
+              </p>
+            </v-card-text>
+
+            <div>
+              {{ prod.productoDescLarga }} Color: {{ prod.colorNombre }}
+            </div>
 
             <v-divider class="mx-4"></v-divider>
 
             <v-card-title>Revisar disponibilidad</v-card-title>
 
             <v-card-text>
+
+<!-- https://v2.vuetifyjs.com/en/styles/text-and-typography/ -->
+
               <!-- <v-chip-group
                 v-model="selection"
                 active-class="deep-purple accent-4 white--text"
@@ -120,16 +124,16 @@ export default {
   computed: {
     computedDateFormattedMomentjs() {
       return this.date ? moment(this.date).format("dddd, MMMM Do YYYY") : "";
-    }
+    },
   },
   methods: {
     reserve() {
       this.loading = true;
       setTimeout(() => (this.loading = false), 2000);
     },
-    eventoclick(i){
-      console.log(i)
-    }
+    seleccionaRegistro(i) {
+      console.log(i);
+    },
   },
 };
 </script>
