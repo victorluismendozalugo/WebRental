@@ -51,10 +51,9 @@
             <v-card-title>Revisar disponibilidad</v-card-title>
 
             <v-card-text>
+              <!-- https://v2.vuetifyjs.com/en/styles/text-and-typography/ -->
 
-<!-- https://v2.vuetifyjs.com/en/styles/text-and-typography/ -->
-
-              <!-- <v-chip-group
+              <v-chip-group
                 v-model="selection"
                 active-class="deep-purple accent-4 white--text"
                 column
@@ -66,7 +65,7 @@
                 <v-chip>8:00PM</v-chip>
 
                 <v-chip>9:00PM</v-chip>
-              </v-chip-group> -->
+              </v-chip-group>
               <v-container>
                 <v-row>
                   <v-col cols="12" lg="12" xl="12">
@@ -86,10 +85,7 @@
                           @click:clear="date = null"
                         ></v-text-field>
                       </template>
-                      <v-date-picker
-                        v-model="date"
-                        @change="menu1 = false"
-                      ></v-date-picker>
+                      <v-date-picker v-model="date"></v-date-picker>
                     </v-menu>
                   </v-col>
                 </v-row>
@@ -97,10 +93,48 @@
             </v-card-text>
 
             <v-card-actions>
-              <v-btn color="deep-purple lighten-2" text @click="reserve">
-                Mas informacion
-              </v-btn>
+              <v-btn color="deep-purple lighten-2"> Mas informacion </v-btn>
             </v-card-actions>
+          </v-card>
+
+          <v-card flat :elevation="12">
+            <v-img
+              :src="prod.prodImagen1"
+              :aspect-ratio="16 / 9"
+              gradient="to top, rgba(25,32,72,.4), rgba(25,32,72,.0)"
+              height="200px"
+              class="elevation-2"
+              style="border-radius: 16px"
+               @click.stop="seleccionaRegistro(prod)"
+            >
+           
+            </v-img>
+
+            <v-card-text>
+              <div class="text-h5 font-weight-bold primary--text">
+               {{ prod.productoDescCorta }}
+              </div>
+
+              <div class="text-body-1 py-4">
+                  {{ prod.productoDescLarga}}
+              </div>
+
+              <div class="d-flex align-center">
+                <!-- <v-avatar color="accent" size="36">
+                  <v-icon dark>mdi-barcode</v-icon>
+                    <v-btn color="accent">{{ prod.productoCod }}</v-btn>
+                </v-avatar> -->
+                   <v-card-text>
+                <v-btn color="accent">
+                     <v-icon dark>mdi-barcode</v-icon>
+                COD:  {{ prod.productoCod }}</v-btn>
+              </v-card-text>
+              </div>
+
+                <div class="text-body-1 py-4">
+                Renta desde: ${{ prod.prodPrecioRenta }}
+              </div>
+            </v-card-text>
           </v-card>
         </v-col>
       </v-row>

@@ -67,8 +67,8 @@ class Http {
     async postLoader(path, data, options) {
 
         options = this.headers
-        var ruta = "http://kssystems-001-site2.dtempurl.com/api/" + path;
-        ruta = "http://localhost:49870/web/" + path;
+        var ruta = "http://kssystems-001-site2.dtempurl.com/api/web/" + path;
+        //ruta = "http://localhost:49870/web/" + path;
         let response = await this.service.post(ruta, data, options)
         return response
 
