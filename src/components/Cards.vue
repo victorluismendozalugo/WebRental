@@ -3,7 +3,6 @@
     <v-app id="inspire">
       <v-row>
         <v-col
-          cols="12"
           xl="2"
           lg="4"
           md="6"
@@ -12,7 +11,7 @@
           v-for="(prod, x) in arr"
           :key="x"
         >
-          <v-card
+          <!-- <v-card
             :loading="load"
             class="mx-auto my-12"
             max-width="374"
@@ -51,7 +50,7 @@
             <v-card-title>Revisar disponibilidad</v-card-title>
 
             <v-card-text>
-              <!-- https://v2.vuetifyjs.com/en/styles/text-and-typography/ -->
+           
 
               <v-chip-group
                 v-model="selection"
@@ -67,7 +66,6 @@
                 <v-chip>9:00PM</v-chip>
               </v-chip-group>
               <v-container>
-                <v-row>
                   <v-col cols="12" lg="12" xl="12">
                     <v-menu
                       v-model="menu1"
@@ -88,16 +86,14 @@
                       <v-date-picker v-model="date"></v-date-picker>
                     </v-menu>
                   </v-col>
-                </v-row>
               </v-container>
             </v-card-text>
-
-            <v-card-actions>
+       </v-card> -->
+          <!-- <v-card-actions>
               <v-btn color="deep-purple lighten-2"> Mas informacion </v-btn>
-            </v-card-actions>
-          </v-card>
+            </v-card-actions> -->
 
-          <v-card flat :elevation="12">
+          <v-card flat :elevation="22">
             <v-img
               :src="prod.prodImagen1"
               :aspect-ratio="16 / 9"
@@ -105,33 +101,33 @@
               height="200px"
               class="elevation-2"
               style="border-radius: 16px"
-               @click.stop="seleccionaRegistro(prod)"
+              @click.stop="seleccionaRegistro(prod)"
             >
-           
             </v-img>
 
             <v-card-text>
-              <div class="text-h5 font-weight-bold primary--text">
-               {{ prod.productoDescCorta }}
+              <div class="font-weight-bold primary--text text-sm-body-3 text-md-body-3 text-lg-h10 text-xl-h10">
+                {{ prod.productoDescCorta }}
               </div>
 
-              <div class="text-body-1 py-4">
-                  {{ prod.productoDescLarga}}
-              </div>
+              <!-- <div class="py-4 text-sm-body-3 text-md-body-3 text-lg-h9 text-xl-h9">
+                {{ prod.productoDescLarga }}
+              </div> -->
 
               <div class="d-flex align-center">
                 <!-- <v-avatar color="accent" size="36">
                   <v-icon dark>mdi-barcode</v-icon>
                     <v-btn color="accent">{{ prod.productoCod }}</v-btn>
                 </v-avatar> -->
-                   <v-card-text>
-                <v-btn color="accent">
-                     <v-icon dark>mdi-barcode</v-icon>
-                COD:  {{ prod.productoCod }}</v-btn>
-              </v-card-text>
+                <v-card-text>
+                  <v-btn color="accent">
+                    <v-icon dark>mdi-barcode</v-icon>
+                    COD: {{ prod.productoCod }}</v-btn
+                  >
+                </v-card-text>
               </div>
 
-                <div class="text-body-1 py-4">
+              <div class="text-body-1 py-4">
                 Renta desde: ${{ prod.prodPrecioRenta }}
               </div>
             </v-card-text>
