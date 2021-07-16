@@ -1,31 +1,29 @@
 <template>
   <div id="app">
-    <!-- <principal hidden="hidden" />
-    <tablas /> -->
-    <cards :arr="arr" :load="loading" />
+    <v-container grid-list-md text-xs-center fluid>
+      <v-layout row wrap>
+        <v-flex xs12>
+          <cards :productos="productos" />
+        </v-flex>
+      </v-layout>
+    </v-container>
   </div>
 </template>
 
 <script>
-// import Principal from "./components/Principal.vue";
-// import Tablas from "./components/Tablas.vue";
 import Cards from "./components/Cards.vue";
 
 export default {
   name: "App",
   components: {
-    // Tablas,
-    // Principal,
     Cards,
   },
   data() {
     return {
-      arr: [],
-      loading: false,
+      productos: [],
     };
   },
   mounted() {
-    this.loading = true
     this.getProds();
   },
   methods: {
@@ -37,9 +35,7 @@ export default {
       http
         .postLoader("catalogo/productos", datos)
         .then((response) => {
-          this.arr = response.data.data.data;
-          console.log(this.arr)
-          this.loading = false
+          this.productos = response.data.data.data;
         })
         .catch((e) => {
           console.log(e);
