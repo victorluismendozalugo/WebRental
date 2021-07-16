@@ -1,5 +1,5 @@
       <template>
-  <v-app id="inspire">
+  <v-app>
     <v-row>
       <v-col
         xl="3"
@@ -71,6 +71,8 @@
   <script>
 export default {
   name: "Cards",
+    components: {
+    },
   props: ["productos"],
   data: () => {
     return {
@@ -79,7 +81,9 @@ export default {
   },
   computed: {},
   mounted() {
+
     this.reserve();
+ 
   },
   methods: {
     reserve() {

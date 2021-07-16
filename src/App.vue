@@ -1,8 +1,9 @@
 <template>
-  <div id="app">
+  <div data-app id="app">
     <v-container grid-list-md text-xs-center fluid>
       <v-layout row wrap>
         <v-flex xs12>
+          <combos></combos>
           <cards :productos="productos" />
         </v-flex>
       </v-layout>
@@ -12,10 +13,13 @@
 
 <script>
 import Cards from "./components/Cards.vue";
-
+import Combos from "./components/Combos.vue";
+import servicioProductos from "./services/servicio-productos.js";
+import servicioCatalogos from "./services/servicio-catalogos.js";
 export default {
   name: "App",
   components: {
+    Combos,
     Cards,
   },
   data() {
@@ -32,13 +36,17 @@ export default {
         productoID: 0,
         productoSucID: 1,
       };
-      http
-        .postLoader("catalogo/productos", datos)
-        .then((response) => {
-          this.productos = response.data.data.data;
+      servicioProductos
+        .productosCon(datos)
+        .then(async (r) => {
+          if (r.value) {
+            this.productos = r.data.data;
+          } else {
+            await this.$msg.warning(r.message);
+          }
         })
-        .catch((e) => {
-          console.log(e);
+        .catch(async (r) => {
+          await this.$msg.error("El servicio no se encuentra disponible");
         });
     },
   },
@@ -46,6 +54,9 @@ export default {
 </script>
 
 <style>
+.v-application--wrap {
+  min-height: 0vh !important;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
