@@ -1,13 +1,9 @@
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import Vue from 'vue'
+import './plugins/bootstrap-vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
-// import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-// Vue.use(BootstrapVue)
-// Vue.use(IconsPlugin)
+import store from './store'
 
 //plugins
 import Swal from '@/plugins/swal'
@@ -20,5 +16,6 @@ Vue.config.productionTip = false
 
 new Vue({
   vuetify,
+  store,
   render: h => h(App)
 }).$mount('#app')

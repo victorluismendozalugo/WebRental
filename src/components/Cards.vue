@@ -10,7 +10,12 @@
         v-for="(prod, x) in productos"
         :key="x"
       >
-        <v-card flat :elevation="17" :loading="loading" style=" border-radius: 15px;" >
+        <v-card
+          flat
+          :elevation="17"
+          :loading="loading"
+          style="border-radius: 15px"
+        >
           <v-carousel>
             <v-carousel-item
               :src="prod.prodImagen1"
@@ -71,8 +76,7 @@
   <script>
 export default {
   name: "Cards",
-    components: {
-    },
+  components: {},
   props: ["productos"],
   data: () => {
     return {
@@ -81,9 +85,7 @@ export default {
   },
   computed: {},
   mounted() {
-
     this.reserve();
- 
   },
   methods: {
     reserve() {
