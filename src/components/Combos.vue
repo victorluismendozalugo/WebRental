@@ -74,7 +74,7 @@
   </v-app>
 </template>
   <script>
-import servicioCatalogos from "../services/servicio-catalogos";
+import servicioCatalogos from "@/services/servicio-catalogos";
 export default {
   name: "Catalogos",
   data: () => {
